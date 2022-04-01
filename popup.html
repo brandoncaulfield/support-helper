@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <div style="width: 800px; height: auto; box-sizing: border-box">
+      <h2>Support Helper</h2>
+      <p>Support all the people!</p>
+
+      <div class="tab">
+        <button id="test" class="tablinks" id="defaultOpen">London</button>
+        <button id="test" class="tablinks">Paris</button>
+        <button id="test" class="tablinks">Tokyo</button>
+      </div>
+
+      <div id="London" class="tabcontent">
+        <h3>New</h3>
+        <p>Add a new template below. </p>
+        <form id="new-form">
+          <label for="name">Name:</label><br />
+          <input type="text" id="name" name="name" /><br />
+          <label for="text">Text</label><br />
+          <textarea type="text" id="text" name="text"></textarea><br /><br />
+          <input type="submit" value="Save" />
+        </form>
+      </div>
+
+      <!-- <div id="Paris" class="tabcontent">
+        <h3>Paris</h3>
+        <p>Paris is the capital of France.</p>
+      </div>
+
+      <div id="Tokyo" class="tabcontent">
+        <h3>Tokyo</h3>
+        <p>Tokyo is the capital of Japan.</p>
+      </div>
+    </div> -->
+
+    <script src="popup.js"></script>
+  </body>
+</html>

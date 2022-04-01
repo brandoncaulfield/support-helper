@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Test Extension Options</title>
+  </head>
+  <body>
+    Favorite color:
+    <select id="color">
+      <option id="01" value="red">red</option>
+      <option id="02" value="green">green</option>
+      <option id="03" value="blue">blue</option>
+      <option id="04" value="yellow">yellow</option>
+    </select>
+    <div id="status"></div>
+    <button id="save">Save</button>
+
+    <div class="container">
+      <form action="/action_page.php">
+        <label for="title">Title:</label><br />
+        <input type="text" id="title" name="title" value="" /><br />
+        <label for="category">Category</label><br />
+        <!-- <input
+          type="text"
+          id="category"
+          name="category"
+          value="Response"
+        /><br /><br /> -->
+        <select id="category">
+          <option id="01" value="Text">Text</option>
+          <option id="02" value="code">Code</option>
+          <option id="03" value="other">Other</option>
+        </select>
+        <br />
+        <label for="text">Text</label><br />
+        <textarea id="text" name="text" class="textarea" name="comment">
+        </textarea>
+        <!-- <input type="submit" value="Submit" /> -->
+      </form>
+    </div>
+
+    <script src="options.js" defer></script>
+  </body>
+</html>

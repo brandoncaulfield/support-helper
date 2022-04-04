@@ -1,16 +1,29 @@
+import React from "react";
+import { render } from "react-dom";
+
+const Popup = () => {
+  return (
+    <div>
+      <h1>Henlo World</h1>
+    </div>
+  );
+};
+
+render(<Popup />, document.querySelector("#react-target"));
+
 let basicResponseButton = document.querySelector("#basic-response-btn");
 // let testButton = document.querySelector("#test-btn");
 let buttons = document.querySelector("#test");
+const saveBtn = document.querySelector("#save-btn");
+testBtn = document.querySelector("#test-btn");
+const form = document.querySelector("#new-form");
 
-document.addEventListener(
-  "DOMContentLoaded",
-  function () {
-    // basicResponseButton.addEventListener("click", copyToClipboard, false);
-    // testButton.addEventListener("click", test, false);
-    buttons.addEventListener("click", openCity(evt, "London"), false);
-  },
-  false
-);
+document.addEventListener("DOMContentLoaded", function () {
+  // basicResponseButton.addEventListener("click", copyToClipboard, false);
+
+  saveBtn.addEventListener("click", set, false);
+  testBtn.addEventListener("click", test, false);
+});
 
 const copyToClipboard = () => {
   debugger;
@@ -26,6 +39,25 @@ const copyToClipboard = () => {
   /* Alert the copied text */
   alert("Text Copied!");
 };
+
+/**
+ * Set
+ * @param {*} item
+ * @returns
+ */
+function setStorageSyncData(item) {
+  // Immediately return a promise and start asynchronous work
+  return new Promise((resolve, reject) => {
+    // Asynchronously fetch all data from storage.sync.
+    chrome.storage.sync.set(item, function () {
+      // Pass any observed errors down the promise chain.
+      if (chrome.runtime.lastError) {
+        return reject(chrome.runtime.lastError);
+      }
+      resolve(item);
+    });
+  });
+}
 
 // const getAllSnippets = () => {
 // Reads all data out of storage.sync and exposes it via a promise.
@@ -48,52 +80,34 @@ function getAllStorageSyncData() {
 }
 // };
 
-/**
- * Set
- * @param {*} item
- * @returns
- */
-function setStorageSyncData(item) {
-  // Immediately return a promise and start asynchronous work
-  return new Promise((resolve, reject) => {
-    // Asynchronously fetch all data from storage.sync.
-    chrome.storage.sync.set(item, function () {
-      // Pass any observed errors down the promise chain.
-      if (chrome.runtime.lastError) {
-        return reject(chrome.runtime.lastError);
-      }
-      resolve(items);
-    });
-  });
-}
-
 const test = () => {
-  debugger;
-  alert("Henlo");
   getAllStorageSyncData()
     .then((data) => {
-      alert(JSON.stringify(data));
-      const list = document.querySelector("#responses");
-      for (i = 0; i <= 3; i++) {
-        let listItem = document.createElement("li");
-        listItem.value = i;
-        list.appendChild(listItem);
-      }
+      console.log(JSON.stringify(data));
+      debugger;
+      const div = document.querySelector("#test");
+      let p = document.createElement("p");
+      const textnode = document.createTextNode(JSON.stringify(data));
+      p.appendChild(textnode);
+      div.appendChild(p);
     })
-    .catch((err) => alert(err));
+    .catch((err) => console.log(err));
 };
 
 const set = () => {
-  debugger;
-  const name = document.querySelector("#name");
-  const text = document.querySelector("#text");
+  const name = document.querySelector("#name").value;
+  const text = document.querySelector("#text").value;
+  if (name === "" || text === "") {
+    alert("Please fill in all fields");
+    throw new Error("Please fill in all fields");
+  }
   let item = {};
   item[name] = text;
   alert("Setting new item to storage");
 
   setStorageSyncData(item)
     .then((data) => {
-      alert(data);
+      alert(JSON.stringify(data));
     })
     .catch((err) => alert(err));
 };

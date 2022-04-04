@@ -5,7 +5,7 @@ const CopyPlugin = require("copy-webpack-plugin");
 module.exports = {
   entry: {
     background: "./src/background.js",
-    popup: "./src/popup.jsx",
+    popup: "./src/popup.tsx",
     options: "./src/options.js",
   },
   output: {
@@ -25,7 +25,17 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "ts-loader",
+        },
+      },
     ],
+  },
+  resolve: {
+    extensions: [".tsx", ".ts", ".js", ".jsx"],
   },
 
   plugins: [

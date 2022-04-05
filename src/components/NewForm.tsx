@@ -1,10 +1,11 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { Button } from "@mui/material";
+import { Button, Grid, Paper } from "@mui/material";
+import styled from "@emotion/styled";
 
 /**
- * Set
+ *
  * @param {*} item
  * @returns
  */
@@ -35,12 +36,13 @@ export default function ValidationTextFields() {
       throw new Error("Please fill in all fields");
     }
     let item: any = {};
-    item[`${newData.name}`] = newData.text;
+    debugger;
+    item["responses"] = {};
+    item["responses"][`${newData.name}`] = newData.text;
+    console.log(`Item: ${item}`);
 
     setStorageSyncData(item)
-      .then((data) => {
-        alert(JSON.stringify(data));
-      })
+      .then((data) => {})
       .catch((err) => alert(err));
   };
 
@@ -59,24 +61,34 @@ export default function ValidationTextFields() {
       noValidate
       autoComplete="off"
     >
-      <div>
-        <TextField id="name" label="name" onChange={onFormFieldChange} />
-        <TextField
-          id="text"
-          label="Text"
-          onChange={onFormFieldChange}
-          multiline
-        />
-        <Button
-          variant="outlined"
-          onClick={() => {
-            console.log(newData);
-            set();
-          }}
-        >
-          Submit
-        </Button>
-      </div>
+      <Grid
+        container
+        spacing={2}
+        sx={{ display: "flex", flexDirection: "column", alignItems: "left" }}
+      >
+        <Grid item xs={2}>
+          {/* <Item> */}
+          <div style={{ width: "100%" }}>
+            <TextField id="name" label="name" onChange={onFormFieldChange} />
+            <TextField
+              id="text"
+              label="Text"
+              onChange={onFormFieldChange}
+              multiline
+            />
+            <Button
+              variant="contained"
+              onClick={() => {
+                console.log(newData);
+                set();
+              }}
+            >
+              Submit
+            </Button>
+          </div>
+          {/* </Item> */}
+        </Grid>
+      </Grid>
     </Box>
   );
 }

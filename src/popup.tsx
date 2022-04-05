@@ -9,6 +9,8 @@ import Box from "@mui/material/Box";
 
 // Components
 import NewForm from "./components/NewForm";
+import { Responses } from "./components/Responses";
+import { CodeSnippets } from "./components/CodeSnippets";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -70,9 +72,11 @@ const Popup = () => {
           <Tab label="New" {...a11yProps(2)} />
         </Tabs>
       </Box>
-      <TabPanel value={value} index={0}></TabPanel>
+      <TabPanel value={value} index={0}>
+        <Responses />
+      </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+        <CodeSnippets />
       </TabPanel>
       <TabPanel value={value} index={2}>
         <NewForm />

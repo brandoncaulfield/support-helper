@@ -7,6 +7,9 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
+// Components
+import NewForm from "./components/NewForm";
+
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
@@ -62,19 +65,17 @@ const Popup = () => {
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
+          <Tab label="Responses" {...a11yProps(0)} />
+          <Tab label="Code Snippets" {...a11yProps(1)} />
+          <Tab label="New" {...a11yProps(2)} />
         </Tabs>
       </Box>
-      <TabPanel value={value} index={0}>
-        Item One
-      </TabPanel>
+      <TabPanel value={value} index={0}></TabPanel>
       <TabPanel value={value} index={1}>
         Item Two
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
+        <NewForm />
       </TabPanel>
     </Box>
   );
@@ -116,7 +117,7 @@ render(<Popup />, document.querySelector("#react-target"));
 //  * @param {*} item
 //  * @returns
 //  */
-// function setStorageSyncData(item) {
+// function setStorageSyncData(item: any) {
 //   // Immediately return a promise and start asynchronous work
 //   return new Promise((resolve, reject) => {
 //     // Asynchronously fetch all data from storage.sync.
